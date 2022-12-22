@@ -1,8 +1,15 @@
 name: YAML Schema
-run-name: Update schema for ref ${{ github.event.workflow_run.head_branch || 'main' }}
+run-name: Update schema for ref ${{ github.event.workflow_run.head_branch || inputs.ref || 'main' }}
 
 on:
   workflow_dispatch: # Activate this workflow manually
+    inputs:
+      ref:
+        description: Tag or branch name of Haystack version
+        required: true
+        type: string
+        default: main
+
   workflow_run:
     workflows:
       - Docker image release
@@ -10,12 +17,12 @@ on:
       - completed
 
 env:
-  HAYSTACK_REF: ${{ github.event.workflow_run.head_branch || 'main' }}
+  HAYSTACK_REF: ${{ github.event.workflow_run.head_branch || inputs.ref || 'main' }}
 
 jobs:
 
   run:
-    name: Update schema for ref ${{ github.event.workflow_run.head_branch || 'main' }}
+    name: Update schema for ref ${{ github.event.workflow_run.head_branch || inputs.ref || 'main' }}
     if: ${{ !github.event.workflow_run || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
