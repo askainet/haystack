@@ -2,9 +2,6 @@ name: YAML Schema
 
 on:
   workflow_dispatch: # Activate this workflow manually
-  push:
-    branches:
-      - main
   workflow_run:
     workflows:
       - Docker image release
