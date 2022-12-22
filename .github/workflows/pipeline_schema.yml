@@ -19,7 +19,7 @@ jobs:
     steps:
       # Start a workflow in https://github.com/deepset-ai/haystack-json-schema
       # https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event
-      - name: Dispatch to schemas repository with ref ${{ HAYSTACK_REF }}
+      - name: Dispatch to schemas repository with ref ${{ env.HAYSTACK_REF }}
         run: |
           curl \
           -X POST \
