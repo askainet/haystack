@@ -1,4 +1,5 @@
 name: YAML Schema
+run-name: Update schema for ref ${{ github.event.workflow_run.head_branch || 'main' }}
 
 on:
   workflow_dispatch: # Activate this workflow manually
@@ -14,7 +15,7 @@ env:
 jobs:
 
   run:
-    name: Schema for ref ${{ env.HAYSTACK_REF }}
+    name: Update schema
     if: ${{ !github.event.workflow_run || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
