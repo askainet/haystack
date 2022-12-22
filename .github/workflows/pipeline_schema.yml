@@ -18,8 +18,8 @@ jobs:
       # https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event
       - name: Dispatch to schemas repository
         run: |
-          echo ${GITHUB_REF}
-          echo ${{ toJSON(github.event) }}
+          echo "${GITHUB_REF}"
+          echo "${{ toJSON(github.event) }}"
           # curl \
           # -X POST \
           # -H "Accept: application/vnd.github+json" \
